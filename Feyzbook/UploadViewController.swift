@@ -1,10 +1,3 @@
-//
-//  UploadViewController.swift
-//  Feyzbook
-//
-//  Created by Feyzullah Durası on 11.05.2024.
-//
-
 import UIKit
 import Firebase
 
@@ -35,53 +28,58 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
     @IBAction func uploadButtonTiklandi(_ sender: Any) {
+        
+        guard let selectedImage = imageView.image else {
+            hataMesajGoster(title: "Hata", message: "Lütfen bir resim seçin.")
+            return
+        }
+        
+        guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
+            hataMesajGoster(title: "Hata", message: "Resim verisi alınamadı.")
+            return
+        }
         
         let storage = Storage.storage()
         let storageReferance = storage.reference()
         let mediaFolder = storageReferance.child("media")
         
-        if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
-            
-            let uuid = UUID().uuidString
-            
-            let imageReference = mediaFolder.child("\(uuid).jpg")
-            
-            imageReference.putData(data, metadata: nil) { (storagemetadata, error) in
-                if error != nil {
-                    self.hataMesajGoster(title: "Hata", message: error?.localizedDescription ?? "hata Aldınız")
-                } else {
-                    imageReference.downloadURL { (url, error) in
-                        if error == nil {
-                            let imageUrl = url?.absoluteString
-                            
-                            if let imageUrl = imageUrl {
-                                
-                                let firestoreDatabase = Firestore.firestore()
-                                
-                                let firestorePost = ["gorselUrl" : imageUrl, "yorum" : self.yorumTextField.text!, "email" : Auth.auth(), "tarih" : FieldValue.serverTimestamp() ] as [String : Any]
-                                
-                                firestoreDatabase.collection("Post").addDocument(data: firestorePost) { (error) in
-                                    if error != nil {
-                                        self.hataMesajGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldiniz")
-                                    }
-                                }
+        let uuid = UUID().uuidString
+        let imageReference = mediaFolder.child("\(uuid).jpg")
+        
+        imageReference.putData(imageData, metadata: nil) { (storagemetadata, error) in
+            if let error = error {
+                self.hataMesajGoster(title: "Hata", message: error.localizedDescription)
+            } else {
+                imageReference.downloadURL { (url, error) in
+                    if let error = error {
+                        self.hataMesajGoster(title: "Hata", message: error.localizedDescription)
+                    } else if let imageUrl = url?.absoluteString {
+                        
+                        let firestoreDatabase = Firestore.firestore()
+                        
+                        let firestorePost = [
+                            "gorselUrl" : imageUrl,
+                            "yorum" : self.yorumTextField.text ?? "",
+                            "email" : Auth.auth().currentUser?.email ?? "",
+                            "tarih" : FieldValue.serverTimestamp()
+                        ] as [String : Any]
+                        
+                        firestoreDatabase.collection("Post").addDocument(data: firestorePost) { (error) in
+                            if let error = error {
+                                self.hataMesajGoster(title: "Hata", message: error.localizedDescription)
+                            } else {
+                                self.imageView.image = UIImage(named: "gorselsec")
+                                self.yorumTextField.text = ""
+                                self.tabBarController?.selectedIndex = 0
                             }
-                            
-                            
-                            
                         }
+                    } else {
+                        self.hataMesajGoster(title: "Hata", message: "Resim URL'si alınamadı.")
                     }
                 }
-                
             }
-            
         }
-        
-        
-        
     }
     
     func hataMesajGoster(title: String, message: String) {
@@ -89,7 +87,5 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true)
-        
     }
-    
 }

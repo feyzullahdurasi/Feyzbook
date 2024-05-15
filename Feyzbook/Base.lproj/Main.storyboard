@@ -21,7 +21,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail Giriniz" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XQg-lv-xuq">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Şifre Giriniz" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XQg-lv-xuq">
                                 <rect key="frame" x="55" y="256" width="283" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -40,7 +40,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Kayıt Ol"/>
                                 <connections>
-                                    <action selector="kayitOlTiklandi:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qk0-3W-Rdw"/>
+                                    <action selector="kayitOlTiklandi:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Rj-9U-akG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjL-gu-6ah">
@@ -48,7 +48,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Giriş Yap"/>
                                 <connections>
-                                    <action selector="girisYapTiklandi:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NlH-lM-d3L"/>
+                                    <action selector="girisYapTiklandi:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kPp-T0-nfl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -74,8 +74,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="54H-3T-0aQ"/>
                     <connections>
-                        <outlet property="emailTextField" destination="473-Lg-ay9" id="iBD-dX-4yt"/>
-                        <outlet property="sifreTextField" destination="XQg-lv-xuq" id="fMw-BI-tvg"/>
+                        <outlet property="emailTextField" destination="473-Lg-ay9" id="die-Jz-Xxl"/>
+                        <outlet property="sifreTextField" destination="XQg-lv-xuq" id="37C-gP-wsO"/>
                         <segue destination="XvS-1l-fn0" kind="presentation" identifier="toFeedVC" modalPresentationStyle="fullScreen" id="Qqp-Wd-Nge"/>
                     </connections>
                 </viewController>
@@ -99,7 +99,7 @@
                                     <action selector="UploadButtonTiklandi:" destination="kIc-tN-OzG" eventType="touchUpInside" id="cd3-Rj-YdT"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ekran Resmi 2024-04-27 10.44.22" translatesAutoresizingMaskIntoConstraints="NO" id="BOT-SF-Tft">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gorselsec" translatesAutoresizingMaskIntoConstraints="NO" id="BOT-SF-Tft">
                                 <rect key="frame" x="31" y="94" width="331" height="348"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Yorum Yazınız" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2i-0w-6eP">
@@ -168,14 +168,81 @@
                     <view key="view" contentMode="scaleToFill" id="4Nr-iz-Rtx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3vV-K0-nGH">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="803"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="320" id="ugS-V3-LB7" customClass="FeedCell" customModule="Feyzbook" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="320"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ugS-V3-LB7" id="K6x-cN-8Cd">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="320"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiO-Ye-600">
+                                                    <rect key="frame" x="20" y="11" width="353" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="353" id="0w3-e5-8Bq"/>
+                                                        <constraint firstAttribute="height" constant="31" id="EQ8-B0-9bS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HCV-Xw-2Dd">
+                                                    <rect key="frame" x="20" y="50" width="353" height="220"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="353" id="JcG-5h-k5c"/>
+                                                        <constraint firstAttribute="height" constant="219" id="RoF-LV-rIT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="kullanıcı yorumu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5G5-tM-vLl">
+                                                    <rect key="frame" x="20" y="277" width="353" height="32"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5G5-tM-vLl" firstAttribute="top" secondItem="HCV-Xw-2Dd" secondAttribute="bottom" constant="8" id="0aI-H2-akV"/>
+                                                <constraint firstItem="HCV-Xw-2Dd" firstAttribute="trailing" secondItem="5G5-tM-vLl" secondAttribute="trailing" id="3lG-57-S96"/>
+                                                <constraint firstItem="iiO-Ye-600" firstAttribute="leading" secondItem="HCV-Xw-2Dd" secondAttribute="leading" id="5fo-VW-cyx"/>
+                                                <constraint firstItem="HCV-Xw-2Dd" firstAttribute="top" secondItem="iiO-Ye-600" secondAttribute="bottom" constant="8" id="EaV-Fx-JOh"/>
+                                                <constraint firstItem="5G5-tM-vLl" firstAttribute="bottom" secondItem="K6x-cN-8Cd" secondAttribute="bottomMargin" id="Jsq-fU-a6A"/>
+                                                <constraint firstItem="HCV-Xw-2Dd" firstAttribute="centerY" secondItem="K6x-cN-8Cd" secondAttribute="centerY" id="XH2-PM-6D5"/>
+                                                <constraint firstItem="iiO-Ye-600" firstAttribute="leading" secondItem="K6x-cN-8Cd" secondAttribute="leadingMargin" id="Xom-LR-CGX"/>
+                                                <constraint firstItem="HCV-Xw-2Dd" firstAttribute="leading" secondItem="5G5-tM-vLl" secondAttribute="leading" id="ZXh-it-2Xd"/>
+                                                <constraint firstItem="iiO-Ye-600" firstAttribute="trailing" secondItem="HCV-Xw-2Dd" secondAttribute="trailing" id="a5H-t5-LIr"/>
+                                                <constraint firstItem="iiO-Ye-600" firstAttribute="top" secondItem="K6x-cN-8Cd" secondAttribute="topMargin" id="kCg-28-oti"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="emailText" destination="iiO-Ye-600" id="xBC-7T-1NH"/>
+                                            <outlet property="postImageview" destination="HCV-Xw-2Dd" id="zPn-po-asA"/>
+                                            <outlet property="yorumText" destination="5G5-tM-vLl" id="dYW-6E-7MK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Zc3-S5-8at"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3vV-K0-nGH" firstAttribute="leading" secondItem="Zc3-S5-8at" secondAttribute="leading" id="LbO-fW-u6e"/>
+                            <constraint firstItem="3vV-K0-nGH" firstAttribute="bottom" secondItem="Zc3-S5-8at" secondAttribute="bottom" id="MSC-YG-0U7"/>
+                            <constraint firstItem="3vV-K0-nGH" firstAttribute="centerX" secondItem="4Nr-iz-Rtx" secondAttribute="centerX" id="ZFN-sV-Bgj"/>
+                            <constraint firstItem="3vV-K0-nGH" firstAttribute="top" secondItem="Zc3-S5-8at" secondAttribute="top" id="hbY-1t-oQS"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" image="pencil" catalog="system" id="4zf-fA-d9w"/>
+                    <connections>
+                        <outlet property="tableView" destination="3vV-K0-nGH" id="FSs-LW-dfM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u72-eC-9aw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="-27"/>
+            <point key="canvasLocation" x="1812.9770992366412" y="-27.464788732394368"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GyV-9s-asz">
@@ -199,9 +266,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Ekran Resmi 2024-04-27 10.44.22" width="528" height="348"/>
         <image name="arrow.down.circle" catalog="system" width="128" height="123"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="gorselsec" width="528" height="348"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
